@@ -1,8 +1,9 @@
 .logo-and-title {
- width: 200px;
- height: auto;
- background-image: url('../images/argentBankLogo.png');
- background-size: cover;
- background-position: center;
- background-repeat: no-repeat;
+    height: 54px;
+}
+
+.logo-and-title img {
+    height: 100%;
+    width: auto; 
+    display: block;
 }

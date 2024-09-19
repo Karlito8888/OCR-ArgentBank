@@ -1,0 +1,94 @@
+.hero {
+  background-image: url("./img/bank-tree-480w.webp");
+  background-position: 0 -50px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 300px;
+  position: relative;
+
+  .hero-content {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 260px;
+    background: white;
+    padding: 2rem;
+    text-align: left;
+    margin: 0 auto;
+
+    .subtitle {
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    .text {
+      font-size: 0.9rem;
+      margin-top: 1rem;
+    }
+  }
+}
+
+@supports (-webkit-image-set: url("./img/bank-tree-1920w.jpg")) {
+  .hero {
+    background-image: -webkit-image-set(
+      url("./img/bank-tree-480w.jpg") 480w,
+      url("./img/bank-tree-768w.jpg") 768w,
+      url("./img/bank-tree-1024w.jpg") 1024w,
+      url("./img/bank-tree-1440w.jpg") 1440w,
+      url("./img/bank-tree-1920w.jpg") 1920w
+    );
+    background-image: image-set(
+      url("./img/bank-tree-480w.jpg") 480w,
+      url("./img/bank-tree-768w.jpg") 768w,
+      url("./img/bank-tree-1024w.jpg") 1024w,
+      url("./img/bank-tree-1440w.jpg") 1440w,
+      url("./img/bank-tree-1920w.jpg") 1920w
+    );
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .hero {
+    background-image: url("./img/bank-tree-768w.webp");
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero {
+    background-image: url("./img/bank-tree-1024w.webp");
+  }
+}
+@media (min-width: 920px) {
+  .hero {
+    height: 400px;
+    background-position: 0% 33%;
+  }
+
+  .hero-content {
+    top: 50px !important;
+    left: unset !important;
+    right: -133px;
+    width: 365px !important;
+    margin: 2rem !important;
+    .subtitle {
+      font-size: 1.5rem !important;
+    }
+    .text {
+      font-size: 1.2rem !important;
+      margin-top: 1.25rem !important;
+    }
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .hero {
+    background-image: url("./img/bank-tree-1440w.webp");
+  }
+}
+
+@media (min-width: 1441px) {
+  .hero {
+    background-image: url("./img/bank-tree-1920w.webp");
+  }
+}
