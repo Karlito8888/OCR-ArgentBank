@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage";
 import Root from "./containers/Root";
 import NotFound from "./pages/NotFound/NotFound";
+import UserPage from "./pages/UserPage";
 
 const router = createBrowserRouter([
   {
@@ -15,7 +16,7 @@ const router = createBrowserRouter([
         path: "login",
         element: <LoginPage />,
       },
-      // { path: "about", element: <About /> },
+      { path: "user", element: <UserPage /> },
       // {
       //   path: "not-found",
       //   element: <NotFound />,

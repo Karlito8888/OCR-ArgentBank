@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/authSlice"; // Importer la nouvelle action du slice
-import { Redirect } from "react-router-dom";
-import "./style.scss";
+import { Navigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
+import "./style.scss";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -19,9 +19,9 @@ const LoginForm = () => {
     dispatch(login({ email, password })); // Envoyer les données à Redux pour la connexion
   };
 
-  // if (isLoggedIn) {
-  //   return <Redirect to="/user" />; // Rediriger l'utilisateur connecté vers une page spécifique
-  // }
+  if (isLoggedIn) {
+    return <Navigate to="/user" />; // Rediriger l'utilisateur connecté vers une page spécifique
+  }
 
   return (
     <div className="bg-dark">

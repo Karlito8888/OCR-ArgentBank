@@ -34,6 +34,11 @@ main {
   height: 100%;
   flex: 1;
 }
+
+.bg-dark {
+  background-color: #12002b;
+  min-height: 100%;
+}
 .sr-only {
   position: absolute;
   width: 1px;
