@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/authSlice"; // Importer la nouvelle action du slice
 import { Navigate } from "react-router-dom";
+import "./style.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
-import "./style.scss";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const { isLoggedIn, error } = useSelector((state) => state.auth); // Récupérer l'état du login et des erreurs
-  // const [username, setUsername] = useState("");
+  // const [userName, setuserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
@@ -30,7 +30,7 @@ const LoginForm = () => {
         <h1>Sign In</h1>
         <form onSubmit={handleSubmit}>
           <div className="input-wrapper">
-            <label htmlFor="email">Username</label>
+            <label htmlFor="email">userName</label>
             <input
               type="email"
               id="email"

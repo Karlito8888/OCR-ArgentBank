@@ -8,17 +8,21 @@ import {
   faCircleUser,
   faGear,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../redux/authSlice";
 import "./style.scss";
 import Button from "../Button";
 
 const Login = () => {
-  const { isLoggedIn, username } = useSelector((state) => state.auth);
+  const { isLoggedIn, userName, firstName } = useSelector(
+    (state) => state.auth
+  );
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     dispatch(logout());
+    navigate("/");
   };
 
   return (
@@ -26,15 +30,25 @@ const Login = () => {
       {isLoggedIn ? (
         // Affichage après connexion
         <div className="nav-items">
-          <span>{username}</span>
+          <span className="nav-name" style={{ color: "#42b983" }}>
+            {userName || firstName}
+          </span>
           <FontAwesomeIcon
             icon={faCircleUser}
-            size="lg"
+            size="2xl"
             style={{ color: "#42b983" }}
           />
-          <FontAwesomeIcon icon={faGear} />
+          <FontAwesomeIcon
+            icon={faGear}
+            style={{ color: "#42b983" }}
+            size="xl"
+          />
           <Button onClick={handleLogout} className="icon-power">
-            <FontAwesomeIcon icon={faPowerOff} />
+            <FontAwesomeIcon
+              icon={faPowerOff}
+              style={{ color: "#42b983" }}
+              size="2xl"
+            />
           </Button>
         </div>
       ) : (
@@ -45,7 +59,7 @@ const Login = () => {
             size="lg"
             style={{ color: "#2c3e50" }}
           />
-          <span>Sign In</span>
+          <span className="nav-sign">Sign In</span>
         </Link>
       )}
     </div>
