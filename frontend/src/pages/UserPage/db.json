@@ -4,19 +4,187 @@
       "id": 1,
       "title": "Argent Bank Checking (x8349)",
       "amount": "$2,082.79",
-      "description": "Available Balance"
+      "description": "Available Balance",
+      "details": [
+        {
+          "date": "2024-09-10",
+          "place": "Supermarket",
+          "amount": "-$45.50",
+          "balance": "$2,037.29",
+          "transactionType": "Credit Card",
+          "category": "Supermarché"
+        },
+        {
+          "date": "2024-09-05",
+          "place": "Salary Deposit",
+          "amount": "+$2,000.00",
+          "balance": "$2,082.79",
+          "transactionType": "Bank Transfer",
+          "category": "Autres"
+        },
+        {
+          "date": "2024-08-28",
+          "place": "Restaurant",
+          "amount": "-$60.20",
+          "balance": "$82.79",
+          "transactionType": "Credit Card",
+          "category": "Restaurant"
+        },
+        {
+          "date": "2024-08-20",
+          "place": "Gas Station",
+          "amount": "-$30.00",
+          "balance": "$142.99",
+          "transactionType": "Credit Card",
+          "category": "Autres"
+        },
+        {
+          "date": "2024-08-15",
+          "place": "Online Transfer",
+          "amount": "-$25.00",
+          "balance": "$172.99",
+          "transactionType": "Bank Transfer",
+          "category": "Autres"
+        }
+      ]
     },
     {
       "id": 2,
       "title": "Argent Bank Savings (x6712)",
       "amount": "$10,928.42",
-      "description": "Available Balance"
+      "description": "Available Balance",
+      "details": [
+        {
+          "date": "2024-09-01",
+          "place": "Interest Payment",
+          "amount": "+$8.42",
+          "balance": "$10,928.42",
+          "transactionType": "Bank Transfer",
+          "category": "Autres"
+        },
+        {
+          "date": "2024-08-20",
+          "place": "Deposit",
+          "amount": "+$5,000.00",
+          "balance": "$10,920.00",
+          "transactionType": "Bank Transfer",
+          "category": "Autres"
+        },
+        {
+          "date": "2024-08-10",
+          "place": "Transfer from Checking",
+          "amount": "+$2,000.00",
+          "balance": "$5,920.00",
+          "transactionType": "Bank Transfer",
+          "category": "Autres"
+        },
+        {
+          "date": "2024-07-30",
+          "place": "Withdraw",
+          "amount": "-$50.00",
+          "balance": "$3,920.00",
+          "transactionType": "Check",
+          "category": "Autres"
+        },
+        {
+          "date": "2024-07-15",
+          "place": "Deposit",
+          "amount": "+$3,000.00",
+          "balance": "$3,970.00",
+          "transactionType": "Bank Transfer",
+          "category": "Autres"
+        }
+      ]
     },
     {
       "id": 3,
       "title": "Argent Bank Credit Card (x8349)",
       "amount": "$184.30",
-      "description": "Current Balance"
+      "description": "Current Balance",
+      "details": [
+        {
+          "date": "2024-09-05",
+          "place": "Online Subscription",
+          "amount": "-$15.00",
+          "balance": "$169.30",
+          "transactionType": "Online Purchase",
+          "category": "Autres"
+        },
+        {
+          "date": "2024-08-28",
+          "place": "Restaurant",
+          "amount": "-$45.70",
+          "balance": "$184.30",
+          "transactionType": "Credit Card",
+          "category": "Restaurant"
+        },
+        {
+          "date": "2024-08-20",
+          "place": "Payment Received",
+          "amount": "+$30.00",
+          "balance": "$229.00",
+          "transactionType": "Bank Transfer",
+          "category": "Autres"
+        },
+        {
+          "date": "2024-08-15",
+          "place": "Gas Station",
+          "amount": "-$10.00",
+          "balance": "$199.00",
+          "transactionType": "Credit Card",
+          "category": "Autres"
+        },
+        {
+          "date": "2024-08-01",
+          "place": "Payment Made",
+          "amount": "-$20.00",
+          "balance": "$209.00",
+          "transactionType": "Bank Transfer",
+          "category": "Autres"
+        }
+      ]
+    }
+  ],
+  "transactionTypes": [
+    {
+      "id": 1,
+      "type": "Online Purchase",
+      "description": "Achat en ligne via un site internet"
+    },
+    {
+      "id": 2,
+      "type": "Check",
+      "description": "Paiement par chèque"
+    },
+    {
+      "id": 3,
+      "type": "Credit Card",
+      "description": "Paiement par carte bancaire"
+    },
+    {
+      "id": 4,
+      "type": "Bank Transfer",
+      "description": "Virement bancaire"
+    },
+    {
+      "id": 5,
+      "type": "Cash Withdrawal",
+      "description": "Retrait en espèces"
+    },
+    {
+      "id": 6,
+      "type": "Payment Received",
+      "description": "Paiement reçu"
+    },
+    {
+      "id": 7,
+      "type": "Payment Made",
+      "description": "Paiement effectué"
+    },
+    {
+      "id": 8,
+      "type": "Deposit",
+      "description": "Dépôt d'argent"
     }
   ]
 }

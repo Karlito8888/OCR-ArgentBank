@@ -39,10 +39,32 @@ export const getUserProfile = createAsyncThunk(
   }
 );
 
+// Action pour mettre à jour le profil utilisateur
+export const updateUserProfile = createAsyncThunk(
+  "auth/updateUserProfile",
+  async ({ token, userName }, { rejectWithValue }) => {
+    try {
+      const response = await axios.put(
+        `${API_URL}/user/profile`,
+        { userName }, // Envoyer le nouveau nom d'utilisateur dans le corps de la requête
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Inclure le token dans les en-têtes
+          },
+        }
+      );
+      return response.data.body; // Retourner les nouvelles informations du profil mises à jour
+    } catch (error) {
+      return rejectWithValue(error.response.data.message); // Gérer les erreurs
+    }
+  }
+);
+
 const initialState = {
   isLoggedIn: false,
   userName: "",
   firstName: "",
+  lastName: "",
   token: null,
   error: null,
 };
@@ -55,6 +77,7 @@ const authSlice = createSlice({
       state.isLoggedIn = false;
       state.userName = "";
       state.firstName = "";
+      state.lastName = "";
       state.token = null;
     },
   },
@@ -71,12 +94,27 @@ const authSlice = createSlice({
       .addCase(login.rejected, (state, action) => {
         state.error = action.payload;
       })
+      // Gestion de l'action getUserProfile
       .addCase(getUserProfile.fulfilled, (state, action) => {
-        // Mettre à jour les informations utilisateur
         state.userName = action.payload.userName;
         state.firstName = action.payload.firstName;
+        state.lastName = action.payload.lastName;
       })
       .addCase(getUserProfile.rejected, (state, action) => {
+        state.error = action.payload;
+      })
+
+      // Gestion de l'action updateUserProfile
+      .addCase(updateUserProfile.pending, (state) => {
+        state.error = null;
+      })
+      .addCase(updateUserProfile.fulfilled, (state, action) => {
+        state.userName = action.payload.userName;
+        state.firstName = action.payload.firstName;
+        state.lastName = action.payload.lastName;
+        state.error = null;
+      })
+      .addCase(updateUserProfile.rejected, (state, action) => {
         state.error = action.payload;
       });
   },

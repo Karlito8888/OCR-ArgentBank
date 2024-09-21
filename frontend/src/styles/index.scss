@@ -19,9 +19,16 @@ html {
 }
 
 body {
-   display: flex;
+  display: flex;
   flex-direction: column;
   height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Cache la scrollbar */
 }
 
 #root {
@@ -58,4 +65,10 @@ ul {
 a {
   text-decoration: none;
   color: black;
+}
+
+button {
+  // background: none;
+  // border: none;
+  cursor: pointer;
 }

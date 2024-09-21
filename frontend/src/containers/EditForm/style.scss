@@ -1,0 +1,12 @@
+.edit-form {
+    display: grid;
+    gap: 8px;
+    color: black;
+
+    .form-group {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+    }
+}

@@ -1,67 +1,56 @@
 .account {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border: 1px solid black;
-  background-color: #fff;
-  width: 80%;
-  margin: 0 auto;
-  flex-direction: column;
-  padding: 1.5rem;
-  box-sizing: border-box;
-  text-align: left;
-  margin-bottom: 2rem;
-  
-  .account-content-wrapper {
-    width: 100%;
-    flex: 1;
-  }
-  
-  .account-title {
-      margin: 0;
-      padding: 0;
-      font-size: 1rem;
-      font-weight: normal;
-    }
-    
-    .account-amount {
-        margin: 0;
+  display: grid;
+
+  .account-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    background-color: #373737;
+    border-radius: 10px;
+    width: 80%;
+    padding: 1.5rem;
+    text-align: left;
+    margin-inline: auto;
+    margin-bottom: 1rem;
+
+    .account-content-wrapper {
+      width: auto;
+      display: grid;
+      gap: 8px;
+
+      .account-title {
+        font-size: 1rem;
+        font-weight: normal;
+      }
+
+      .account-amount {
         font-size: 2.5rem;
         font-weight: bold;
-    }
-    
-    .account-amount-description {
-        margin: 0;
+      }
     }
 
     .cta {
-
-        .transaction-button {
-          display: block;
-          width: 100%;
-          padding-block: 8px;
-          padding-inline: 24px;
-          font-size: 1.1rem;
-          font-weight: bold;
-          margin-top: 1rem;
-          border-color: #00bc77;
-          background-color: #00bc77;
-          color: #fff;
-          text-wrap: nowrap;
-        }
+      .transaction-button {
+        display: block;
+        width: 100%;
+        background: none;
+        font-size: 4rem;
+        border: none;
+        color: #fff;
+      }
     }
-}
-
-@media (min-width: 720px) {
-  .account {
-    flex-direction: row;
   }
 
-  .account-content-wrapper.cta {
-    flex: 0;
+  .collapse-content {
+    padding: 10px;
+    background: #f9f9f9;
+    height: 0; 
+    overflow: hidden; 
+    transition: height 0.3s ease;
   }
 
-  .transaction-button {
-    width: 200px;
+  .collapse-content.open {
+    height: auto; /* Ajuste cette valeur selon le contenu */
   }
 }
