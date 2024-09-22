@@ -1,5 +1,4 @@
 @import "./colors.scss";
-
 *,
 *::before,
 *::after {
@@ -8,7 +7,7 @@
   padding: 0;
 }
 
-html {
+html, body {
   height: 100%;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -21,31 +20,28 @@ html {
 body {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  scrollbar-width: none;
-}
-
-body::-webkit-scrollbar {
-  display: none; /* Cache la scrollbar */
+  min-height: 100vh;
 }
 
 #root {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  flex-grow: 1;
+}
+
+header {
+  height: auto;
 }
 
 main {
-  height: 100%;
-  flex: 1;
+  flex-grow: 1;
 }
 
-.bg-dark {
-  background-color: #12002b;
-  min-height: 100%;
+footer {
+  height: auto;
+  flex-shrink: 0;
 }
+
 .sr-only {
   position: absolute;
   width: 1px;

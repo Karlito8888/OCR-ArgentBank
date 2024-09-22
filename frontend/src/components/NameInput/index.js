@@ -8,6 +8,10 @@ const NameInput = ({
   disabled = false,
   placeholder,
 }) => {
+  const handleChange = (e) => {
+    onChange(e.target.value); // Passez la valeur du champ à onChange
+  };
+
   return (
     <div className="form-group">
       <label htmlFor={id}>{label}:</label>
@@ -15,7 +19,7 @@ const NameInput = ({
         type="text"
         id={id}
         value={value}
-        onChange={onChange}
+        onChange={handleChange} // Utilisez handleChange ici
         disabled={disabled}
         placeholder={placeholder}
       />

@@ -6,12 +6,15 @@
     display: flex;
     align-items: center;
     gap: 25px;
-    span.nav-name {
+
+    .nav-name {
       font-size: 1.3rem;
       font-weight: 100;
       letter-spacing: 1px;
+      color: #42b983;
     }
-    span.nav-sign {
+
+    .nav-sign {
       &:hover {
         text-decoration: underline;
       }

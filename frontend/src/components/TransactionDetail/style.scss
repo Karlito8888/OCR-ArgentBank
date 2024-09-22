@@ -49,7 +49,7 @@
     font-size: 1.15rem;
     letter-spacing: 1px;
 
-     .transaction {
+    .transaction {
       background-color: #42b983;
       transition: background-color 0.3s;
 
@@ -61,15 +61,84 @@
       &:hover {
         background-color: #45a049;
       }
-    }
 
-    .details-content {
-      background-color: #42b983; // Même couleur que la transaction
-      color: white; // Texte en blanc
-      padding: 10px 20px; // Même padding que la transaction
-      border-top: none; // Supprime la bordure entre transaction et details
+      .transaction-hidden {
+        display: none;
+        opacity: 0;
+        height: 0;
+        overflow: hidden;
+        transition: opacity 0.3s ease, height 0.3s ease;
+        margin-top: 25px;
+
+        p {
+          margin-bottom: 10px;
+        }
+      }
+
+      .transaction-hidden.show {
+        display: block;
+        opacity: 1;
+        height: auto;
+      }
+
+      .transaction-hidden.hide {
+        display: none;
+        opacity: 0;
+        height: 0;
+      }
+
+      .category-dropdown {
+        margin-left: 10px;
+        background-color: white;
+        border-radius: 5px;
+        padding: 3px;
+        font-size: 0.7rem;
+        color: #333;
+        cursor: pointer;
+        transition: background-color 0.3s, border-color 0.3s;
+
+        &:focus {
+          outline: none;
+          border-color: #45a049; 
+        }
+
+        option {
+          padding: 10px; 
+          background-color: white;
+          color: #333; 
+
+          &:hover {
+            background-color: #f0f0f0; 
+          }
+        }
+      }
+
+      .note-input {
+        width: 150px; 
+        border: none; 
+        outline: none; 
+        border-radius: 5px;
+        padding: 5px;
+        font-size: 1rem; 
+        color: #333; 
+        background-color: #fff; 
+
+        &:focus {
+          border-color: #45a049; 
+          background-color: #f9f9f9;
+        }
+      }
+
+      .amount,
+      .balance,
+      .toggle-icon-td {
+        vertical-align: top;
+      }
+
+      .toggle-icon {
+        color: #ffffff;
+        font-size: 1.25rem;
+      }
     }
   }
-
-  
 }

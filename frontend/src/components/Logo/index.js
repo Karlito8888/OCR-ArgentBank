@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import "./style.scss";
 
 const Logo = () => {
-  // Récupérer l'état isLoggedIn depuis Redux
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   return (

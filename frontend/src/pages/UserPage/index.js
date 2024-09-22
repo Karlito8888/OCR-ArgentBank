@@ -6,14 +6,18 @@ import accountsData from "./db.json";
 import AccountItem from "../../components/AccountItem";
 import { getUserProfile, updateUserProfile } from "../../redux/authSlice";
 import EditForm from "../../containers/EditForm";
+import { useLocation } from "react-router-dom";
 
 const UserPage = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
   const { isLoggedIn, token, userName, firstName, lastName } = useSelector(
     (state) => state.auth
   );
   const [accounts, setAccounts] = useState([]);
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(
+    location.state?.isEditing || false
+  );
   const [newUsername, setNewUsername] = useState(userName);
 
   useEffect(() => {
@@ -49,36 +53,35 @@ const UserPage = () => {
   return (
     <div className="main bg-dark">
       <div className="userpage-header">
-        <h1>
-          Welcome back
-          <br />
-          {userName || firstName || "Dear user"} !
-        </h1>
-        {/* Rendu conditionnel pour le bouton */}
         {!isEditing ? (
-          <button className="edit-button" onClick={handleEditClick}>
-            Edit Name
-          </button>
+          <>
+            <h1>
+              Welcome back
+              <br />
+              {userName || firstName || "Dear user"}!
+            </h1>
+            <button className="edit-button" onClick={handleEditClick}>
+              Edit Name
+            </button>
+          </>
         ) : (
-          <p className="edit-user-info">Edit user info</p>
+          <h1>
+            Edit user info
+          </h1>
         )}
       </div>
-
-      {/* Formulaire d'édition du nom */}
       {isEditing && (
         <EditForm
-          newUsername={newUsername}
+          userName={userName}
           handleUsernameChange={handleUsernameChange}
           firstName={firstName}
           lastName={lastName}
           handleSave={handleSave}
           handleCancel={handleCancel}
+          token={token}
         />
       )}
-
       <h2 className="sr-only">Accounts</h2>
-
-      {/* Itération des comptes à partir des données dynamiques */}
       {accounts.map((account) => (
         <AccountItem
           key={account.id}

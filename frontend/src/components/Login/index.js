@@ -1,5 +1,3 @@
-// src/App.js
-
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,8 +8,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../redux/authSlice";
-import "./style.scss";
 import Button from "../Button";
+import Tooltip from "../Tooltip";
+import "./style.scss";
 
 const Login = () => {
   const { isLoggedIn, userName, firstName } = useSelector(
@@ -25,39 +24,54 @@ const Login = () => {
     navigate("/");
   };
 
+  const handleSettingsClick = () => {
+    navigate("/user", { state: { isEditing: true } });
+  };
+
   return (
     <div className="navbar-right">
       {isLoggedIn ? (
-        // Affichage après connexion
         <div className="nav-items">
-          <span className="nav-name" style={{ color: "#42b983" }}>
-            {userName || firstName}
-          </span>
-          <FontAwesomeIcon
-            icon={faCircleUser}
-            size="2xl"
-            style={{ color: "#42b983" }}
-          />
-          <FontAwesomeIcon
-            icon={faGear}
-            style={{ color: "#42b983" }}
-            size="xl"
-          />
-          <Button onClick={handleLogout} className="icon-power">
+          <span className="nav-name">{userName || firstName}</span>
+          <Tooltip text="My Page">
+            <Link to="/user" className="icon-user">
+              <FontAwesomeIcon
+                icon={faCircleUser}
+                size="xl"
+                style={{ color: "#42b983" }}
+                aria-label="User Profile"
+              />
+            </Link>
+          </Tooltip>
+          <Tooltip text="Edit Page">
             <FontAwesomeIcon
-              icon={faPowerOff}
+              icon={faGear}
+              size="xl"
+              className="icon-settings"
               style={{ color: "#42b983" }}
-              size="2xl"
+              aria-label="Settings"
+              onClick={handleSettingsClick}
             />
-          </Button>
+          </Tooltip>
+          <Tooltip text="Logout">
+            <Button onClick={handleLogout} className="icon-power">
+              <FontAwesomeIcon
+                icon={faPowerOff}
+                size="2xl"
+                style={{ color: "#42b983" }}
+                aria-label="Logout"
+              />
+            </Button>
+          </Tooltip>
         </div>
       ) : (
-        // Affichage avant connexion
         <Link to="/login" className="nav-items">
           <FontAwesomeIcon
             icon={faCircleUser}
             size="lg"
-            style={{ color: "#2c3e50" }}
+            className="icon-login"
+            style={{ color: "darkgray" }}
+            aria-label="Login"
           />
           <span className="nav-sign">Sign In</span>
         </Link>

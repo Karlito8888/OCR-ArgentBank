@@ -8,15 +8,19 @@ const API_URL = "http://localhost:3001/api/v1";
 // Actions asynchrones
 export const login = createAsyncThunk(
   "auth/login",
-  async ({ email, password }, { rejectWithValue }) => {
+  async ({ email, password }, { dispatch, rejectWithValue }) => {
     try {
       const response = await axios.post(`${API_URL}/user/login`, {
         email,
         password,
       });
-      return response.data.body.token; // Retourner le token
+      const token = response.data.body.token;
+      localStorage.setItem("token", token); // Stockez le token ici
+      // Récupérez le profil utilisateur avec le token
+      await dispatch(getUserProfile(token)); // Assurez-vous d'utiliser dispatch ici
+      return token; // Retourner le token
     } catch (error) {
-      return rejectWithValue(error.response.data.message); // Retourner le message d'erreur
+      return rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -31,7 +35,6 @@ export const getUserProfile = createAsyncThunk(
           Authorization: `Bearer ${token}`, // Utiliser le token pour l'appel API
         },
       });
-      console.log("User Profile Response:", response.data.body);
       return response.data.body; // Retourner les infos utilisateur (userName, firstName, etc.)
     } catch (error) {
       return rejectWithValue(error.response.data.message);
@@ -61,11 +64,11 @@ export const updateUserProfile = createAsyncThunk(
 );
 
 const initialState = {
-  isLoggedIn: false,
+  isLoggedIn: !!localStorage.getItem("token"), // Vérifie la présence du token
   userName: "",
   firstName: "",
   lastName: "",
-  token: null,
+  token: localStorage.getItem("token"), // Stocke le token si présent
   error: null,
 };
 
@@ -79,6 +82,7 @@ const authSlice = createSlice({
       state.firstName = "";
       state.lastName = "";
       state.token = null;
+      localStorage.removeItem("token");
     },
   },
   extraReducers: (builder) => {
@@ -87,14 +91,13 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(login.fulfilled, (state, action) => {
-        state.isLoggedIn = true;
-        state.token = action.payload;
+        state.isLoggedIn = true;state.token = action.payload;
+        localStorage.setItem("token", action.payload);
         state.error = null;
       })
       .addCase(login.rejected, (state, action) => {
         state.error = action.payload;
       })
-      // Gestion de l'action getUserProfile
       .addCase(getUserProfile.fulfilled, (state, action) => {
         state.userName = action.payload.userName;
         state.firstName = action.payload.firstName;
@@ -103,7 +106,6 @@ const authSlice = createSlice({
       .addCase(getUserProfile.rejected, (state, action) => {
         state.error = action.payload;
       })
-
       // Gestion de l'action updateUserProfile
       .addCase(updateUserProfile.pending, (state) => {
         state.error = null;

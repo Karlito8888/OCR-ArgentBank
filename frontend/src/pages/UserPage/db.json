@@ -144,47 +144,5 @@
         }
       ]
     }
-  ],
-  "transactionTypes": [
-    {
-      "id": 1,
-      "type": "Online Purchase",
-      "description": "Achat en ligne via un site internet"
-    },
-    {
-      "id": 2,
-      "type": "Check",
-      "description": "Paiement par chèque"
-    },
-    {
-      "id": 3,
-      "type": "Credit Card",
-      "description": "Paiement par carte bancaire"
-    },
-    {
-      "id": 4,
-      "type": "Bank Transfer",
-      "description": "Virement bancaire"
-    },
-    {
-      "id": 5,
-      "type": "Cash Withdrawal",
-      "description": "Retrait en espèces"
-    },
-    {
-      "id": 6,
-      "type": "Payment Received",
-      "description": "Paiement reçu"
-    },
-    {
-      "id": 7,
-      "type": "Payment Made",
-      "description": "Paiement effectué"
-    },
-    {
-      "id": 8,
-      "type": "Deposit",
-      "description": "Dépôt d'argent"
-    }
   ]
 }

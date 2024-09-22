@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useCallback, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight, faX } from "@fortawesome/free-solid-svg-icons";
 import TransactionDetail from "../TransactionDetail";
@@ -6,11 +6,11 @@ import "./style.scss";
 
 const AccountItem = ({ title, amount, description, details }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const contentRef = useRef(null);
 
-  const handleToggle = () => {
+  const handleToggle = useCallback(() => {
     setIsOpen((prev) => !prev);
-  };
+  }, []);
+  // Evite de créer une nouvelle fonction à chaque rendu.
 
   return (
     <section className="account">
@@ -20,20 +20,17 @@ const AccountItem = ({ title, amount, description, details }) => {
           <p className="account-amount">{amount}</p>
           <p className="account-amount-description">{description}</p>
         </div>
-        <div className="account-content-wrapper cta" onClick={handleToggle}>
-          <button className="transaction-button">
-            <FontAwesomeIcon
-              icon={isOpen ? faX : faChevronRight}
-              style={{ color: "#ffffff" }}
-            />
+        <div className="account-content-wrapper cta">
+          <button
+            className="transaction-button"
+            onClick={handleToggle}
+            aria-expanded={isOpen}
+          >
+            <FontAwesomeIcon icon={isOpen ? faX : faChevronRight} />
           </button>
         </div>
       </div>
-      <div
-        className={`collapse-content ${isOpen ? "open" : ""}`}
-        style={{ height: isOpen ? contentRef.current.scrollHeight : "0px" }}
-        ref={contentRef}
-      >
+      <div className={`collapse-content ${isOpen ? "open" : ""}`}>
         <TransactionDetail transactions={details} />
       </div>
     </section>
@@ -41,3 +38,4 @@ const AccountItem = ({ title, amount, description, details }) => {
 };
 
 export default AccountItem;
+

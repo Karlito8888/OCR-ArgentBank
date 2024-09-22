@@ -26,11 +26,11 @@ const LoginForm = () => {
   return (
     <div className="bg-dark">
       <section className="sign-in-content">
-        <FontAwesomeIcon icon={faCircleUser} />
+        <FontAwesomeIcon icon={faCircleUser} size="lg"/>
         <h1>Sign In</h1>
         <form onSubmit={handleSubmit}>
           <div className="input-wrapper">
-            <label htmlFor="email">userName</label>
+            <label htmlFor="email">Username</label>
             <input
               type="email"
               id="email"
