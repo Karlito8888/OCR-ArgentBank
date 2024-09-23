@@ -1,10 +1,10 @@
-import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage";
 import Root from "./containers/Root";
 import NotFound from "./pages/NotFound/NotFound";
 import UserPage from "./pages/UserPage";
+import TransactionDetailPage from "./pages/TransactionDetailPage";
 import ProtectedRoute from "./utils/ProtectedRoute";
 
 const router = createBrowserRouter([
@@ -24,6 +24,14 @@ const router = createBrowserRouter([
             <UserPage />
           </ProtectedRoute>
         ),
+      },
+      {
+        path: "transaction-detail",
+        element:(
+          <ProtectedRoute>
+            <TransactionDetailPage />
+          </ProtectedRoute>
+        )
       },
       {
         path: "not-found",

@@ -1,9 +1,14 @@
-header {
-    .navbar {
-        padding: 5px 20px;
-        background-color: white;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+.header-special {
+  margin-top: clamp(0.0625rem, -2.2634rem + 7.4427vw, 2.5rem);
+  width: 100%;
+  padding-inline: clamp(0.625rem, -6.5315rem + 22.9008vw, 8.125rem);
+  margin-inline: auto;
+}
+
+.navbar {
+  padding-block: 5px;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

@@ -65,9 +65,7 @@ const UserPage = () => {
             </button>
           </>
         ) : (
-          <h1>
-            Edit user info
-          </h1>
+          <h1>Edit user info</h1>
         )}
       </div>
       {isEditing && (
@@ -82,17 +80,20 @@ const UserPage = () => {
         />
       )}
       <h2 className="sr-only">Accounts</h2>
-      {accounts.map((account) => (
-        <AccountItem
-          key={account.id}
-          title={account.title}
-          amount={account.amount}
-          description={account.description}
-          details={account.details}
-        />
-      ))}
+      <div className="accounts-container">
+        {accounts.map((account) => (
+          <AccountItem
+            key={account.id}
+            title={account.title}
+            amount={account.amount}
+            description={account.description}
+            details={account.details}
+          />
+        ))}
+      </div>
     </div>
   );
 };
 
 export default UserPage;
+

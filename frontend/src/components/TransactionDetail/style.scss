@@ -1,13 +1,15 @@
 .account-detail {
-  width: 81%;
+  width: 100%;
+  margin-inline: auto;
   border-collapse: separate;
   border-spacing: 0 10px;
-  margin-inline: auto;
+  font-size: clamp(0.7rem, 0.2229rem + 1.5267vw, 1.2rem);
 
   thead {
     th {
       color: black;
-      padding: 15px;
+      padding-block: clamp(0.3125rem, -0.2839rem + 1.9084vw, 0.9375rem);
+      padding-inline: clamp(0rem, -0.8946rem + 2.8626vw, 0.9375rem);
       text-align: center;
       font-weight: bold;
 
@@ -22,6 +24,7 @@
       }
       &:nth-child(4) {
         width: 25%;
+        // display: none;
       }
       &:nth-child(5) {
         width: 10%;
@@ -46,7 +49,6 @@
   }
 
   tbody {
-    font-size: 1.15rem;
     letter-spacing: 1px;
 
     .transaction {
@@ -54,7 +56,8 @@
       transition: background-color 0.3s;
 
       td {
-        padding: 10px 20px;
+        padding-block: clamp(0.3125rem, -0.2839rem + 1.9084vw, 0.9375rem);
+        padding-inline: clamp(0.3125rem, -0.2839rem + 1.9084vw, 0.9375rem);
         color: white;
       }
 
@@ -92,39 +95,39 @@
         background-color: white;
         border-radius: 5px;
         padding: 3px;
-        font-size: 0.7rem;
+        font-size: clamp(0.4rem, 0.1137rem + 0.916vw, 0.7rem);
         color: #333;
         cursor: pointer;
         transition: background-color 0.3s, border-color 0.3s;
 
         &:focus {
           outline: none;
-          border-color: #45a049; 
+          border-color: #45a049;
         }
 
         option {
-          padding: 10px; 
+          padding: clamp(0.1875rem, -0.23rem + 1.3359vw, 0.625rem);
           background-color: white;
-          color: #333; 
+          color: #333;
 
           &:hover {
-            background-color: #f0f0f0; 
+            background-color: #f0f0f0;
           }
         }
       }
 
       .note-input {
-        width: 150px; 
-        border: none; 
-        outline: none; 
+        width: clamp(5rem, 0.8254rem + 13.3588vw, 9.375rem);
+        border: none;
+        outline: none;
         border-radius: 5px;
-        padding: 5px;
-        font-size: 1rem; 
-        color: #333; 
-        background-color: #fff; 
+        padding: clamp(0.1875rem, 0.0682rem + 0.3817vw, 0.3125rem);
+        font-size: clamp(0.6rem, 0.2183rem + 1.2214vw, 1rem);
+        color: #333;
+        background-color: #fff;
 
         &:focus {
-          border-color: #45a049; 
+          border-color: #45a049;
           background-color: #f9f9f9;
         }
       }
@@ -137,7 +140,7 @@
 
       .toggle-icon {
         color: #ffffff;
-        font-size: 1.25rem;
+        font-size: clamp(1rem, 0.7615rem + 0.7634vw, 1.25rem);
       }
     }
   }

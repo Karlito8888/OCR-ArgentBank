@@ -1,5 +1,5 @@
 .logo-and-title {
-    height: 54px;
+    height: clamp(1.5625rem, -0.167rem + 5.5344vw, 3.375rem);
 }
 
 .logo-and-title img {

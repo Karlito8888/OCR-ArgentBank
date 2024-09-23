@@ -21,4 +21,12 @@
       font-weight: bold;
     }
   }
+
+  .accounts-container {
+    display: grid;
+    gap: 20px;
+    width: 100%;
+    padding-inline: clamp(0.625rem, -6.5315rem + 22.9008vw, 8.125rem);
+    margin-inline: auto;
+  }
 }

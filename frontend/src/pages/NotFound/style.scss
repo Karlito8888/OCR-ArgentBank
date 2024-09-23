@@ -7,7 +7,7 @@
   background-color: white;
   color: #42b983;
   text-align: center;
-  
+
   h1 {
     font-size: 6rem;
     margin: 0;
@@ -32,7 +32,7 @@
     transition: background-color 0.3s;
 
     &:hover {
-      background-color: darken(#42b983, 10%);
+      background-color: adjust-color(#42b983, $lightness: -10%);
     }
   }
 }

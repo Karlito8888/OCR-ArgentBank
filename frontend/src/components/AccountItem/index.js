@@ -1,19 +1,26 @@
-import React, { useCallback, useState } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight, faX } from "@fortawesome/free-solid-svg-icons";
-import TransactionDetail from "../TransactionDetail";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./style.scss";
 
 const AccountItem = ({ title, amount, description, details }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const handleToggle = useCallback(() => {
-    setIsOpen((prev) => !prev);
-  }, []);
-  // Evite de créer une nouvelle fonction à chaque rendu.
+  const handleNavigate = () => {
+    navigate("/transaction-detail", {
+      state: {
+        account: { title, amount, description, details },
+      },
+    });
+  };
+
+  // On vérifie si l'utilisateur est sur la page de détails de la transaction
+  const isTransactionDetailPage = location.pathname === "/transaction-detail";
 
   return (
-    <section className="account">
+    <section className="account" onClick={handleNavigate}>
       <div className="account-content">
         <div className="account-content-wrapper">
           <h3 className="account-title">{title}</h3>
@@ -21,21 +28,14 @@ const AccountItem = ({ title, amount, description, details }) => {
           <p className="account-amount-description">{description}</p>
         </div>
         <div className="account-content-wrapper cta">
-          <button
-            className="transaction-button"
-            onClick={handleToggle}
-            aria-expanded={isOpen}
-          >
-            <FontAwesomeIcon icon={isOpen ? faX : faChevronRight} />
-          </button>
+          {/* Affiche faChevronRight si on n'est pas sur la page de détail, sinon affiche faX */}
+          <FontAwesomeIcon
+            icon={isTransactionDetailPage ? faX : faChevronRight}
+          />
         </div>
-      </div>
-      <div className={`collapse-content ${isOpen ? "open" : ""}`}>
-        <TransactionDetail transactions={details} />
       </div>
     </section>
   );
 };
 
 export default AccountItem;
-

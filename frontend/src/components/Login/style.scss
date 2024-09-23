@@ -5,10 +5,10 @@
     color: #2c3e50;
     display: flex;
     align-items: center;
-    gap: 25px;
+    gap: clamp(0.9375rem, 0.3411rem + 1.9084vw, 1.5625rem);
 
     .nav-name {
-      font-size: 1.3rem;
+      font-size: clamp(0.9375rem, 0.5916rem + 1.1069vw, 1.3rem);
       font-weight: 100;
       letter-spacing: 1px;
       color: #42b983;

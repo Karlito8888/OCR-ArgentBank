@@ -51,13 +51,10 @@ const registerUsers = async () => {
       console.log(`User ${user.userName} created successfully:`, response.data);
     } catch (error) {
       if (error.response) {
-        // Erreur renvoyée par l'API (status 4xx ou 5xx)
         console.error(`Error for user ${user.userName}:`, error.response.data);
       } else if (error.request) {
-        // Aucune réponse reçue
         console.error(`No response received for user ${user.userName}`);
       } else {
-        // Autre erreur (par ex: problème de configuration)
         console.error(
           `Error setting up request for user ${user.userName}:`,
           error.message

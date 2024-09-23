@@ -164,3 +164,4 @@ const AccountDetail = ({ transactions }) => {
 };
 
 export default AccountDetail;
+
