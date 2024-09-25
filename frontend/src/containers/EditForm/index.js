@@ -1,9 +1,5 @@
-// src/components/EditForm.js
-
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
 import NameInput from "../../components/NameInput";
-import { getUserProfile, updateUserProfile } from "../../redux/authSlice";
 import "./style.scss";
 
 const EditForm = ({
@@ -12,36 +8,23 @@ const EditForm = ({
   lastName,
   handleSave,
   handleCancel,
+  handleUsernameChange,
 }) => {
-  const dispatch = useDispatch();
-  const token = useSelector((state) => state.auth.token);
   const [localUserName, setLocalUserName] = useState(userName);
 
   useEffect(() => {
     setLocalUserName(userName);
   }, [userName]);
 
-  const handleUsernameChange = (newValue) => {
-    setLocalUserName(newValue);
-  };
-
   const handleSubmit = () => {
-    if (!token) {
-      alert("Token is missing! Please log in again.");
-      return;
-    }
     if (!localUserName.trim()) {
       alert("Username cannot be empty!");
       return;
     }
 
-    dispatch(updateUserProfile({ token, userName: localUserName }))
-      .unwrap()
-      .then(() => {
-        dispatch(getUserProfile(token));
-        handleSave();
-      })
-      .catch((error) => alert(`Error updating profile: ${error}`));
+    // Appelle la fonction passée en prop pour mettre à jour le nom d'utilisateur
+    handleUsernameChange(localUserName);
+    handleSave(); // Appel de la fonction pour enregistrer
   };
 
   return (
@@ -50,7 +33,7 @@ const EditForm = ({
         id="username"
         label="User name"
         value={localUserName}
-        onChange={handleUsernameChange}
+        onChange={setLocalUserName} // Passer directement la fonction ici
         placeholder={userName || "Enter your username"}
       />
       <NameInput

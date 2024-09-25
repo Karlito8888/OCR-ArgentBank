@@ -1,65 +1,53 @@
-import React, { useState } from "react";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../redux/authSlice"; // Importer la nouvelle action du slice
-import { Navigate } from "react-router-dom";
 import "./style.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
+import { loginUser } from "../../redux/authActions";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
+  const { loading, userInfo, error } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const { isLoggedIn, error } = useSelector((state) => state.auth); // Récupérer l'état du login et des erreurs
-  // const [userName, setuserName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
+  const { register, handleSubmit } = useForm();
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(login({ email, password })); // Envoyer les données à Redux pour la connexion
+  useEffect(() => {
+    if (userInfo) {
+      navigate("/user");
+    }
+  }, [navigate, userInfo]);
+
+  const submitForm = (data) => {
+    dispatch(loginUser(data));
   };
-
-  if (isLoggedIn) {
-    return <Navigate to="/user" />; // Rediriger l'utilisateur connecté vers une page spécifique
-  }
 
   return (
     <div className="bg-dark">
       <section className="sign-in-content">
-        <FontAwesomeIcon icon={faCircleUser} size="lg"/>
+        <FontAwesomeIcon icon={faCircleUser} size="lg" />
         <h1>Sign In</h1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(submitForm)}>
           <div className="input-wrapper">
             <label htmlFor="email">Username</label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+            <input type="email" id="email" {...register("email")} required />
           </div>
           <div className="input-wrapper">
             <label htmlFor="password">Password</label>
             <input
               type="password"
               id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              {...register("password")}
               required
             />
           </div>
           <div className="input-remember">
-            <input
-              type="checkbox"
-              id="remember-me"
-              checked={rememberMe}
-              onChange={(e) => setRememberMe(e.target.checked)}
-            />
+            <input type="checkbox" id="remember-me" />
             <label htmlFor="remember-me">Remember me</label>
           </div>
-          <button type="submit" className="sign-in-button">
-            Sign In
+          <button type="submit" className="sign-in-button" disabled={loading}>
+            {loading ? "Loading..." : "Sign In"}
           </button>
           {error && <p className="error-message">{error}</p>}
         </form>
@@ -69,3 +57,4 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
+
