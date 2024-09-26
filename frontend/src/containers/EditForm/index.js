@@ -8,7 +8,6 @@ const EditForm = ({
   lastName,
   handleSave,
   handleCancel,
-  handleUsernameChange,
 }) => {
   const [localUserName, setLocalUserName] = useState(userName);
 
@@ -17,14 +16,7 @@ const EditForm = ({
   }, [userName]);
 
   const handleSubmit = () => {
-    if (!localUserName.trim()) {
-      alert("Username cannot be empty!");
-      return;
-    }
-
-    // Appelle la fonction passée en prop pour mettre à jour le nom d'utilisateur
-    handleUsernameChange(localUserName);
-    handleSave(); // Appel de la fonction pour enregistrer
+    handleSave(localUserName); // Appeler handleSave avec localUserName
   };
 
   return (

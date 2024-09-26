@@ -9,7 +9,7 @@ const NameInput = ({
   placeholder,
 }) => {
   const handleChange = (e) => {
-    onChange(e.target.value); // Passez la valeur du champ à onChange
+    onChange(e.target.value);
   };
 
   return (
@@ -19,7 +19,7 @@ const NameInput = ({
         type="text"
         id={id}
         value={value}
-        onChange={handleChange} // Utilisez handleChange ici
+        onChange={handleChange} 
         disabled={disabled}
         placeholder={placeholder}
       />

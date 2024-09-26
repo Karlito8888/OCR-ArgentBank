@@ -9,9 +9,9 @@ import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const { loading, userInfo, error } = useSelector((state) => state.user);
-  const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (userInfo) {

@@ -5,7 +5,7 @@ import Root from "./containers/Root";
 import NotFound from "./pages/NotFound/NotFound";
 import UserPage from "./pages/UserPage";
 import TransactionDetailPage from "./pages/TransactionDetailPage";
-// import ProtectedRoute from "./utils/ProtectedRoute";
+import ProtectedRoute from "./utils/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -19,11 +19,19 @@ const router = createBrowserRouter([
       },
       {
         path: "user",
-        element: <UserPage />,
+        element: (
+          <ProtectedRoute>
+            <UserPage />
+          </ProtectedRoute>
+        ),
       },
       {
-        path: "transaction-detail",
-        element: <TransactionDetailPage />,
+        path: "transaction-detail/:id",
+        element: (
+          <ProtectedRoute>
+            <TransactionDetailPage />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "not-found",

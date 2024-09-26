@@ -4,8 +4,8 @@ import Header from "../Header";
 import Footer from "../Footer";
 
 const Root = () => {
-  const location = useLocation(); // Récupérer l'objet location
-  const isLoginPage = location.pathname === "/login"; // Vérifier si on est sur la page de connexion
+  const location = useLocation();
+  const isLoginPage = location.pathname === "/login";
 
   return (
     <>

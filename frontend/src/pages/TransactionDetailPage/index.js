@@ -5,24 +5,24 @@ import TransactionDetail from "../../components/TransactionDetail";
 import "./style.scss";
 
 const TransactionDetailPage = () => {
-  // Récupère les données passées via react-router
   const location = useLocation();
   const { account } = location.state || {};
 
+
   if (!account) {
-    return <div>No account selected</div>; // Message en cas d'absence de sélection
+    return <div>No account selected</div>;
   }
 
   return (
     <div className="transaction-detail-page">
       {/* Affiche l'AccountItem en haut */}
       <AccountItem
+        id={account.id}
         title={account.title}
         amount={account.amount}
         description={account.description}
         details={account.details}
       />
-
       {/* Affiche les détails de la transaction */}
       <TransactionDetail transactions={account.details} />
     </div>
@@ -30,3 +30,4 @@ const TransactionDetailPage = () => {
 };
 
 export default TransactionDetailPage;
+

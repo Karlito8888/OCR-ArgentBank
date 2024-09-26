@@ -1,6 +1,7 @@
 // UserPage.js
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { getUserProfile, updateUserProfile } from "../../redux/authActions";
 import EditForm from "../../containers/EditForm";
 import AccountItem from "../../components/AccountItem";
@@ -9,11 +10,14 @@ import "./style.scss";
 
 const UserPage = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
+  const [isEditing, setIsEditing] = useState(
+    location.state?.isEditing || false
+  );
+  const [accounts, setAccounts] = useState([]);
   const { userInfo, userToken, error, loading } = useSelector(
     (state) => state.user
   );
-  const [isEditing, setIsEditing] = useState(false);
-  const [accounts, setAccounts] = useState([]);
 
   useEffect(() => {
     if (userToken) {
@@ -52,7 +56,7 @@ const UserPage = () => {
             <h1>
               Welcome back
               <br />
-              {userInfo.userName || userInfo.firstName || "Dear user"}!
+              {userInfo?.userName || userInfo?.firstName || "Dear user"} !
             </h1>
             <button className="edit-button" onClick={handleEditClick}>
               Edit Name
@@ -64,11 +68,11 @@ const UserPage = () => {
       </div>
       {isEditing && (
         <EditForm
-          userName={userInfo.userName} // Utilisez directement userInfo.userName
-          handleUsernameChange={(newValue) => handleSave(newValue)} // Passez la nouvelle valeur à handleSave
-          firstName={userInfo.firstName}
-          lastName={userInfo.lastName}
-          handleSave={handleSave} // Vous pouvez passer simplement handleSave
+          userName={userInfo?.userName || ""}
+          handleUsernameChange={(newValue) => handleSave(newValue)} 
+          firstName={userInfo?.firstName}
+          lastName={userInfo?.lastName}
+          handleSave={handleSave} 
           handleCancel={handleCancel}
           token={userToken}
         />
@@ -78,6 +82,7 @@ const UserPage = () => {
         {accounts.map((account) => (
           <AccountItem
             key={account.id}
+            id={account.id}
             title={account.title}
             amount={account.amount}
             description={account.description}

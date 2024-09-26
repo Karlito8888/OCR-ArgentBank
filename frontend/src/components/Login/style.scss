@@ -1,5 +1,8 @@
+// style.scss
+
 .navbar-right {
   padding-right: 10px;
+
   .nav-items {
     font-weight: bold;
     color: #2c3e50;
@@ -18,6 +21,11 @@
       &:hover {
         text-decoration: underline;
       }
+    }
+
+    .icon {
+      color: #42b983;
+      cursor: pointer; 
     }
   }
 }
