@@ -8,7 +8,7 @@ const Header = () => {
   const location = useLocation();
   const isSpecialPage =
     location.pathname === "/user" ||
-    location.pathname === "/transaction-detail";
+    location.pathname.startsWith("/transaction-detail");
 
   return (
     <header className={isSpecialPage ? "header-special" : ""}>

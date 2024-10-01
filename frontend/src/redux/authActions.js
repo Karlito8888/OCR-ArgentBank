@@ -4,31 +4,6 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const backendURL = "http://localhost:3001/api/v1";
 
-// export const registerUser = createAsyncThunk(
-//   "user/signup",
-//   async ({ firstName, lastName, email, password }, { rejectWithValue }) => {
-//     try {
-//       const config = {
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//       };
-//       await axios.post(
-//         `${backendURL}/user/signup`,
-//         { firstName, lastName, email, password },
-//         config
-//       );
-//     } catch (error) {
-//       // return custom error message from backend if present
-//       if (error.response && error.response.data.message) {
-//         return rejectWithValue(error.response.data.message);
-//       } else {
-//         return rejectWithValue(error.message);
-//       }
-//     }
-//   }
-// );
-
 export const loginUser = createAsyncThunk(
   "user/loginUser",
   async ({ email, password }, { rejectWithValue }) => {
@@ -75,7 +50,7 @@ export const getUserProfile = createAsyncThunk(
     );
 
       console.log("Profil de l'utilisateur:", data);
-      return data.body; // Return user profile for fulfilled action
+      return data.body;
     } catch (error) {
       return rejectWithValue(
         error.response && error.response.data.message
@@ -106,7 +81,7 @@ export const updateUserProfile = createAsyncThunk(
         config
       );
 
-      return data.body; // Return updated user profile for fulfilled action
+      return data.body;
     } catch (error) {
       return rejectWithValue(
         error.response && error.response.data.message
@@ -116,5 +91,30 @@ export const updateUserProfile = createAsyncThunk(
     }
   }
 );
+
+// export const registerUser = createAsyncThunk(
+//   "user/signup",
+//   async ({ firstName, lastName, email, password }, { rejectWithValue }) => {
+//     try {
+//       const config = {
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//       };
+//       await axios.post(
+//         `${backendURL}/user/signup`,
+//         { firstName, lastName, email, password },
+//         config
+//       );
+//     } catch (error) {
+//       // return custom error message from backend if present
+//       if (error.response && error.response.data.message) {
+//         return rejectWithValue(error.response.data.message);
+//       } else {
+//         return rejectWithValue(error.message);
+//       }
+//     }
+//   }
+// );
 
 

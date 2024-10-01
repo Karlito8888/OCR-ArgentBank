@@ -15,14 +15,13 @@ const authSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    // Logout user
     logout: (state) => {
       state.loading = false;
       state.userInfo = null;
       state.userToken = null;
       state.error = null;
       state.success = false;
-      localStorage.removeItem("userToken"); // Retire le token du localStorage
+      localStorage.removeItem("userToken");
     },
     setCredentials: (state, { payload }) => {
       state.userInfo = payload;
@@ -36,8 +35,8 @@ const authSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.userInfo = payload.body; // Assignez les informations utilisateur
-        state.userToken = payload.body.token; // Récupérer le token
+        state.userInfo = payload.body;
+        state.userToken = payload.body.token;
       })
       .addCase(loginUser.rejected, (state, { payload }) => {
         state.loading = false;
@@ -49,7 +48,7 @@ const authSlice = createSlice({
       })
       .addCase(getUserProfile.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.userInfo = payload; // Récupère les données du profil utilisateur
+        state.userInfo = payload;
       })
       .addCase(getUserProfile.rejected, (state, { payload }) => {
         state.loading = false;
