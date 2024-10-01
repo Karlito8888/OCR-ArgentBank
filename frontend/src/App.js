@@ -1,11 +1,11 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import HomePage from "./pages/HomePage/HomePage";
-import LoginPage from "./pages/LoginPage";
 import Root from "./containers/Root";
-import NotFound from "./pages/NotFound/NotFound";
+import HomePage from "./pages/HomePage/";
+import LoginPage from "./pages/LoginPage";
+import ProtectedRoute from "./utils/ProtectedRoute";
 import UserPage from "./pages/UserPage";
 import TransactionDetailPage from "./pages/TransactionDetailPage";
-import ProtectedRoute from "./utils/ProtectedRoute";
+import NotFound from "./pages/NotFound";
 
 const router = createBrowserRouter([
   {

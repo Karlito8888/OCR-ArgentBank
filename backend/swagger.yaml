@@ -164,167 +164,177 @@
 #     properties:
 #       userName:
 #         type: string
+
 swagger: "2.0"
 info:
-  title: Bank Argent API documentation
-  description: Contains all available API endpoints in this codebase
+  title: Bank Argent API documentation 
+  description: Contains all available API endpoints in this codebase 
   version: "1.0.0"
-  termsOfService: "http://swagger.io/terms/"
-host: localhost:3001
-basePath: /api/v1
+  termsOfService: "http://swagger.io/terms/" 
+host: localhost:3001 # Hôte de l'API
+basePath: /api/v1 # Chemin de base de l'API
 schemes:
-  - http
+  - http # Protocole utilisé pour l'API (http ou https)
+
 paths:
-  /user/login:
-    post:
+  /user/login: # Endpoint pour la connexion de l'utilisateur
+    post: # Méthode HTTP pour créer une nouvelle session
       tags:
-        - User Module
-      summary: Login
-      description: API for user login
+        - User Module # Tag pour le module utilisateur
+      summary: Login # Résumé de l'endpoint
+      description: API for user login # Description de l'endpoint
       parameters:
-        - in: body
-          name: body
-          description: Login Payload
-          required: true
+        - in: body # Type de paramètre dans le corps de la requête
+          name: body # Nom du paramètre
+          description: Login Payload # Description du corps de la requête
+          required: true # Ce paramètre est obligatoire
           schema:
-            $ref: "#/definitions/Login"
+            $ref: "#/definitions/Login" # Référence au schéma de connexion
       produces:
-        - application/json
+        - application/json # Type de réponse attendu
       responses:
-        "200":
-          description: Login successfully
+        "200": # Code de réponse pour un succès
+          description: Login successfully # Description du succès
           schema:
-            $ref: "#/definitions/LoginResponse"
-        "400":
-          description: Invalid fields (e.g., user not found, invalid password)
-        "500":
-          description: Internal server error
-  /user/signup:
-    post:
+            $ref: "#/definitions/LoginResponse" # Référence au schéma de réponse de connexion
+        "400": # Code de réponse pour une mauvaise requête
+          description: Invalid fields (e.g., user not found, invalid password) # Description de l'erreur
+        "500": # Code de réponse pour une erreur serveur
+          description: Internal server error # Description de l'erreur
+
+  /user/signup: # Endpoint pour l'inscription de l'utilisateur
+    post: # Méthode HTTP pour créer un nouvel utilisateur
       tags:
-        - User Module
-      summary: Signup
-      description: API for user signup
+        - User Module # Tag pour le module utilisateur
+      summary: Signup # Résumé de l'endpoint
+      description: API for user signup # Description de l'endpoint
       parameters:
-        - in: body
-          name: body
-          description: Signup Payload
-          required: true
+        - in: body # Type de paramètre dans le corps de la requête
+          name: body # Nom du paramètre
+          description: Signup Payload # Description du corps de la requête
+          required: true # Ce paramètre est obligatoire
           schema:
-            $ref: "#/definitions/User"
+            $ref: "#/definitions/User" # Référence au schéma utilisateur
       produces:
-        - application/json
+        - application/json # Type de réponse attendu
       responses:
-        "200":
-          description: Signup successfully
+        "200": # Code de réponse pour un succès
+          description: Signup successfully # Description du succès
           schema:
-            $ref: "#/definitions/ApiResponse"
-        "400":
-          description: Invalid fields (e.g., email already exists)
-        "500":
-          description: Internal server error
-  /user/profile:
-    get:
+            $ref: "#/definitions/ApiResponse" # Référence au schéma de réponse de l'API
+        "400": # Code de réponse pour une mauvaise requête
+          description: Invalid fields (e.g., email already exists) # Description de l'erreur
+        "500": # Code de réponse pour une erreur serveur
+          description: Internal server error # Description de l'erreur
+
+  /user/profile: # Endpoint pour gérer le profil de l'utilisateur
+    get: # Méthode HTTP pour récupérer les informations du profil
       security:
-        - Bearer: []
+        - Bearer: [] # Définition de la sécurité avec le token Bearer
       tags:
-        - User Module
-      summary: Get user profile
-      description: API for fetching a user profile
+        - User Module # Tag pour le module utilisateur
+      summary: Get user profile # Résumé de l'endpoint
+      description: API for fetching a user profile # Description de l'endpoint
       responses:
-        "200":
-          description: User profile retrieved successfully
+        "200": # Code de réponse pour un succès
+          description: User profile retrieved successfully # Description du succès
           schema:
-            $ref: "#/definitions/ApiResponse"
-        "400":
-          description: Invalid fields
-        "500":
-          description: Internal server error
-    put:
+            $ref: "#/definitions/ApiResponse" # Référence au schéma de réponse de l'API
+        "400": # Code de réponse pour une mauvaise requête
+          description: Invalid fields # Description de l'erreur
+        "500": # Code de réponse pour une erreur serveur
+          description: Internal server error # Description de l'erreur
+    put: # Méthode HTTP pour mettre à jour le profil de l'utilisateur
       security:
-        - Bearer: []
+        - Bearer: [] # Définition de la sécurité avec le token Bearer
       tags:
-        - User Module
-      summary: Update user profile
-      description: API for updating user profile attributes
+        - User Module # Tag pour le module utilisateur
+      summary: Update user profile # Résumé de l'endpoint
+      description: API for updating user profile attributes # Description de l'endpoint
       parameters:
-        - in: body
-          name: body
-          description: Update user profile attributes
-          required: true
+        - in: body # Type de paramètre dans le corps de la requête
+          name: body # Nom du paramètre
+          description: Update user profile attributes # Description du corps de la requête
+          required: true # Ce paramètre est obligatoire
           schema:
-            $ref: "#/definitions/UserProfile"
+            $ref: "#/definitions/UserProfile" # Référence au schéma de profil utilisateur
       produces:
-        - application/json
+        - application/json # Type de réponse attendu
       responses:
-        "200":
-          description: User profile updated successfully
+        "200": # Code de réponse pour un succès
+          description: User profile updated successfully # Description du succès
           schema:
-            $ref: "#/definitions/ApiResponse"
-        "400":
-          description: Invalid fields
-        "500":
-          description: Internal server error
-securityDefinitions:
-  Bearer:
-    type: apiKey
-    name: Authorization
-    in: header
-definitions:
-  User:
-    type: object
+            $ref: "#/definitions/ApiResponse" # Référence au schéma de réponse de l'API
+        "400": # Code de réponse pour une mauvaise requête
+          description: Invalid fields # Description de l'erreur
+        "500": # Code de réponse pour une erreur serveur
+          description: Internal server error # Description de l'erreur
+
+securityDefinitions: # Définitions des méthodes de sécurité
+  Bearer: # Définition du type de sécurité Bearer
+    type: apiKey # Type de sécurité (clé API)
+    name: Authorization # Nom du champ pour la clé API
+    in: header # Indique que la clé sera envoyée dans l'en-tête
+
+definitions: # Définitions des schémas utilisés dans l'API
+  User: # Schéma pour représenter un utilisateur
+    type: object # Type d'objet
     properties:
       email:
-        type: string
-        description: User email
+        type: string # Type de données pour l'email
+        description: User email # Description de la propriété
       password:
-        type: string
-        description: User password
+        type: string # Type de données pour le mot de passe
+        description: User password # Description de la propriété
       firstName:
-        type: string
-        description: User first name
+        type: string # Type de données pour le prénom
+        description: User first name # Description de la propriété
       lastName:
-        type: string
-        description: User last name
+        type: string # Type de données pour le nom de famille
+        description: User last name # Description de la propriété
       userName:
-        type: string
-        description: User public name
-  Login:
-    type: object
+        type: string # Type de données pour le nom d'utilisateur public
+        description: User public name # Description de la propriété
+
+  Login: # Schéma pour représenter une demande de connexion
+    type: object # Type d'objet
     properties:
       email:
-        type: string
-        description: User email
+        type: string # Type de données pour l'email
+        description: User email # Description de la propriété
       password:
-        type: string
-        description: User password
-  ApiResponse:
-    type: object
+        type: string # Type de données pour le mot de passe
+        description: User password # Description de la propriété
+
+  ApiResponse: # Schéma pour représenter la réponse de l'API
+    type: object # Type d'objet
     properties:
       status:
-        type: integer
+        type: integer # Type de données pour le code de statut
       message:
-        type: string
+        type: string # Type de données pour le message
       body:
-        type: object
+        type: object # Contenu principal de la réponse
         properties:
           id:
-            type: string
+            type: string # Type de données pour l'identifiant utilisateur
           email:
-            type: string
+            type: string # Type de données pour l'email utilisateur
           firstName:
-            type: string
+            type: string # Type de données pour le prénom utilisateur
           lastName:
-            type: string
+            type: string # Type de données pour le nom de famille utilisateur
           userName:
-            type: string
-  LoginResponse:
-    type: object
+            type: string # Type de données pour le nom d'utilisateur public
+
+  LoginResponse: # Schéma pour représenter la réponse à une demande de connexion
+    type: object # Type d'objet
     properties:
       token:
-        type: string
-  UserProfile:
-    type: object
+        type: string # Type de données pour le token d'authentification
+
+  UserProfile: # Schéma pour représenter le profil de l'utilisateur
+    type: object # Type d'objet
     properties:
       userName:
-        type: string
+        type: string # Type de données pour le nom d'utilisateur

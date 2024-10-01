@@ -16,7 +16,7 @@ const EditForm = ({
   }, [userName]);
 
   const handleSubmit = () => {
-    handleSave(localUserName); // Appeler handleSave avec localUserName
+    handleSave(localUserName); 
   };
 
   return (
@@ -25,7 +25,7 @@ const EditForm = ({
         id="username"
         label="User name"
         value={localUserName}
-        onChange={setLocalUserName} // Passer directement la fonction ici
+        onChange={setLocalUserName}
         placeholder={userName || "Enter your username"}
       />
       <NameInput
