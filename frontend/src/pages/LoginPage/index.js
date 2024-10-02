@@ -9,17 +9,37 @@ import "./style.scss";
 
 const LoginPage = () => {
   const { loading, userInfo, error } = useSelector((state) => state.user);
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, setValue } = useForm();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
+    // Récupérer les informations de l'utilisateur stockées dans localStorage s'il existe
+    const savedEmail = localStorage.getItem("email");
+    const savedPassword = localStorage.getItem("password");
+
+    if (savedEmail && savedPassword) {
+      setValue("email", savedEmail);
+      setValue("password", savedPassword);
+    }
+
     if (userInfo) {
       navigate("/user");
     }
-  }, [navigate, userInfo]);
+  }, [navigate, userInfo, setValue]);
 
   const submitForm = (data) => {
+    // Si la case "Remember Me" est cochée, stocker les informations dans localStorage
+    if (data.rememberMe) {
+      localStorage.setItem("email", data.email);
+      localStorage.setItem("password", data.password);
+    } else {
+      // Si la case n'est pas cochée, s'assurer de nettoyer le localStorage
+      localStorage.removeItem("email");
+      localStorage.removeItem("password");
+    }
+
+    // Dispatch de l'action de login
     dispatch(loginUser(data));
   };
 
@@ -43,7 +63,11 @@ const LoginPage = () => {
             />
           </div>
           <div className="input-remember">
-            <input type="checkbox" id="remember-me" />
+            <input
+              type="checkbox"
+              id="remember-me"
+              {...register("rememberMe")}
+            />
             <label htmlFor="remember-me">Remember me</label>
           </div>
           <button type="submit" className="sign-in-button" disabled={loading}>

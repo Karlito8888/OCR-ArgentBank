@@ -1,5 +1,5 @@
 // src/components/Login.js
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../redux/authSlice";
@@ -19,6 +19,14 @@ const Login = () => {
 
   const userToken = useSelector((state) => state.user.userToken);
   const userInfo = useSelector((state) => state.user.userInfo);
+  const getUsername = () => {
+    return (
+      userInfo?.userName ||
+      userInfo?.firstName ||
+      localStorage.getItem("username") ||
+      "Dear user"
+    );
+  };
 
   // Fonction pour gérer la déconnexion
   const handleLogout = () => {
@@ -31,13 +39,20 @@ const Login = () => {
     navigate("/user", { state: { isEditing: true } });
   };
 
+  // Stocker le userName dans le localStorage dès qu'il est disponible
+  useEffect(() => {
+    if (userInfo?.userName) {
+      localStorage.setItem("username", userInfo.userName);
+    } else if (userInfo?.firstName) {
+      localStorage.setItem("username", userInfo.firstName);
+    }
+  }, [userInfo]);
+
   return (
     <div className="navbar-right">
       {userToken ? (
         <div className="nav-items">
-          <span className="nav-name">
-            {userInfo?.userName || userInfo?.firstName || "Dear user"}
-          </span>
+          <span className="nav-name">{getUsername()}</span>
 
           <Tooltip text="My Page">
             <Link to="/user" className="icon-user">
